@@ -1,22 +1,61 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 const HeroSection = () => {
+  const router = useRouter();
   const [displayedCommands, setDisplayedCommands] = useState([]);
-  const commands = [
+  const [inputValue, setInputValue] = useState('');
+  
+  const validCommands = {
+    'cd home': '/',
+    'cd about': '/about',
+    'cd career': '/career',
+    'cd contact': '/contact',
+  };
+
+  const initialMessages = [
     { text: '> cd quantanyx-studio', delay: 1000 },
     { text: '> git checkout -b feature/innovation', delay: 2000 },
     { text: '> npm install future-tech', delay: 3000 },
     { text: '> Starting development server...', delay: 4000 },
     { text: '> Ready to shape the future! 🚀', delay: 5000 },
+    { text: '> Available commands: cd home, cd about, cd career, cd contact', delay: 6000 },
+    { text: '> Type a command to navigate 🚀', delay: 7000 },
   ];
 
   useEffect(() => {
-    commands.forEach((command, index) => {
-      setTimeout(() => {
-        setDisplayedCommands(prev => [...prev, command.text]);
-      }, command.delay);
+    const timeouts = [];  // Array to store timeout IDs
+    
+    initialMessages.forEach((message, index) => {
+      const timeout = setTimeout(() => {
+        setDisplayedCommands(prev => [...prev, { text: message.text, isCommand: false }]);
+      }, message.delay);
+      timeouts.push(timeout);  // Store timeout ID
     });
+
+    // Cleanup function to clear all timeouts when component unmounts
+    return () => {
+      timeouts.forEach(timeout => clearTimeout(timeout));
+    };
   }, []);
+
+  const handleInputSubmit = (e) => {
+    e.preventDefault();
+    const command = inputValue.toLowerCase().trim();
+    
+    // Add the command to displayed commands
+    setDisplayedCommands(prev => [...prev, { text: `> ${inputValue}`, isCommand: true }]);
+    
+    // Check if it's a valid command
+    if (validCommands[command]) {
+      setDisplayedCommands(prev => [...prev, { text: `Navigating to ${command.substring(3)}...`, isCommand: false }]);
+      router.push(validCommands[command]);
+    } else {
+      setDisplayedCommands(prev => [...prev, { text: 'Command not found. Try: cd home, cd about, cd career, cd contact', isCommand: false }]);
+    }
+    
+    setInputValue('');
+  };
 
   return (
     <div className="relative w-full max-w-3xl mx-auto mt-8">
@@ -37,11 +76,24 @@ const HeroSection = () => {
         {/* Terminal Content */}
         <div className="p-4 font-mono text-sm">
           {displayedCommands.map((command, index) => (
-            <div key={index} className="text-gray-300 mb-2">
-              {command}
+            <div 
+              key={index} 
+              className="text-gray-300 mb-2"
+            >
+              {command.text}
             </div>
           ))}
-          <div className="inline-block w-2 h-4 bg-green-500 animate-pulse"></div>
+          <form onSubmit={handleInputSubmit} className="flex items-center">
+            <span className="text-green-500 mr-2">{'>'}</span>
+            <input
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              className="flex-1 bg-transparent border-none outline-none text-gray-300 focus:ring-0"
+              autoFocus
+              spellCheck="false"
+            />
+          </form>
         </div>
       </div>
 
