@@ -9,6 +9,7 @@ import {
   FaCode,
   FaGithub,
   FaLinkedin,
+  FaArrowRight,
 } from "react-icons/fa";
 import { SiDjango, SiNextdotjs, SiPostgresql } from "react-icons/si";
 import { BiBrain } from "react-icons/bi";
@@ -218,195 +219,237 @@ export default function Home() {
               Our Projects
             </h1>
             <p className="text-gray-400 text-sm sm:text-base max-w-2xl mx-auto">
-              Explore our portfolio of innovative solutions that have helped
-              businesses transform their digital presence
+              Explore our portfolio of innovative solutions that have helped businesses transform their digital presence
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {/* SSTU */}
-            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-green-900/20 to-black/40 p-1">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-black opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div
-                className="relative p-6 h-full border border-green-500/20 rounded-lg bg-black/40 backdrop-blur-sm 
-                            transform transition-transform duration-300 group-hover:-translate-y-1"
-              >
-                <div className="absolute top-0 right-0 p-4">
-                  <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+            {/* AI Community Project */}
+            <div className="group relative h-[400px] overflow-hidden rounded-xl perspective-1000">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-black/40 group-hover:opacity-0 transition-opacity duration-500"></div>
+              <div className="relative h-full transform transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                {/* Front of card */}
+                <div className="absolute inset-0">
+                  <div className="h-full w-full bg-[url('/images/ai-community.jpg')] bg-cover bg-center">
+                    <div className="h-full w-full backdrop-blur-[2px] bg-black/40 p-8 flex flex-col justify-end">
+                      <h2 className="text-white text-3xl font-bold mb-3">AI Community</h2>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="text-xs bg-green-500/20 backdrop-blur-md border border-green-500/20 text-green-400 px-3 py-1 rounded-full">
+                          AI Platform
+                        </span>
+                        <span className="text-xs bg-green-500/20 backdrop-blur-md border border-green-500/20 text-green-400 px-3 py-1 rounded-full">
+                          Community
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <h2 className="text-white text-xl sm:text-2xl font-bold mb-3">
-                  SSTU
-                </h2>
-                <p className="text-gray-300 text-sm sm:text-base mb-4">
-                  Official website of Sunamgonj Science and Technology
-                  University, using Django in the backend and NextJS in the
-                  frontend
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="text-xs bg-green-500/10 border border-green-500/20 text-green-500 px-2 py-1 rounded-full">
-                    University
-                  </span>
-                  <span className="text-xs bg-green-500/10 border border-green-500/20 text-green-500 px-2 py-1 rounded-full">
-                    Education
-                  </span>
-                  <span className="text-xs bg-green-500/10 border border-green-500/20 text-green-500 px-2 py-1 rounded-full">
-                    Full Stack
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* AI Community */}
-            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-green-900/20 to-black/40 p-1">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-black opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div
-                className="relative p-6 h-full border border-green-500/20 rounded-lg bg-black/40 backdrop-blur-sm 
-                            transform transition-transform duration-300 group-hover:-translate-y-1"
-              >
-                <div className="absolute top-0 right-0 p-4">
-                  <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
-                </div>
-                <h2 className="text-white text-xl sm:text-2xl font-bold mb-3">
-                  AI Community
-                </h2>
-                <p className="text-gray-300 text-sm sm:text-base mb-4">
-                  A collaborative platform for AI enthusiasts and professionals
-                  to share knowledge and resources.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="text-xs bg-green-500/10 border border-green-500/20 text-green-500 px-2 py-1 rounded-full">
-                    Community
-                  </span>
-                  <span className="text-xs bg-green-500/10 border border-green-500/20 text-green-500 px-2 py-1 rounded-full">
-                    AI
-                  </span>
-                  <span className="text-xs bg-green-500/10 border border-green-500/20 text-green-500 px-2 py-1 rounded-full">
-                    Collaboration
-                  </span>
+                {/* Back of card */}
+                <div className="absolute inset-0 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                  <div className="h-full w-full bg-black/90 p-8 flex flex-col justify-between backdrop-blur-xl border border-green-500/20">
+                    <div>
+                      <h3 className="text-green-400 text-2xl font-bold mb-4">Project Overview</h3>
+                      <p className="text-gray-300 leading-relaxed">
+                        A vibrant community platform for AI enthusiasts, researchers, and professionals. Features include discussion forums, resource sharing, and collaborative learning spaces.
+                      </p>
+                    </div>
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="text-green-400 mb-2">Tech Stack</h4>
+                        <div className="flex gap-3">
+                          <SiNextdotjs className="text-2xl text-gray-300 hover:text-green-400 transition-colors" />
+                          <FaPython className="text-2xl text-gray-300 hover:text-green-400 transition-colors" />
+                          <SiDjango className="text-2xl text-gray-300 hover:text-green-400 transition-colors" />
+                          <SiPostgresql className="text-2xl text-gray-300 hover:text-green-400 transition-colors" />
+                        </div>
+                      </div>
+                      <a href="#" className="inline-flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors">
+                        View Project <FaArrowRight className="text-sm" />
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* AMIRLab */}
-            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-green-900/20 to-black/40 p-1">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-black opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div
-                className="relative p-6 h-full border border-green-500/20 rounded-lg bg-black/40 backdrop-blur-sm 
-                            transform transition-transform duration-300 group-hover:-translate-y-1"
-              >
-                <div className="absolute top-0 right-0 p-4">
-                  <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
+            {/* AMIRLab Project */}
+            <div className="group relative h-[400px] overflow-hidden rounded-xl perspective-1000 lg:mt-12">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-black/40 group-hover:opacity-0 transition-opacity duration-500"></div>
+              <div className="relative h-full transform transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div className="absolute inset-0">
+                  <div className="h-full w-full bg-[url('/images/amirlab.jpg')] bg-cover bg-center">
+                    <div className="h-full w-full backdrop-blur-[2px] bg-black/40 p-8 flex flex-col justify-end">
+                      <h2 className="text-white text-3xl font-bold mb-3">AMIRLab</h2>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="text-xs bg-green-500/20 backdrop-blur-md border border-green-500/20 text-green-400 px-3 py-1 rounded-full">
+                          Research
+                        </span>
+                        <span className="text-xs bg-green-500/20 backdrop-blur-md border border-green-500/20 text-green-400 px-3 py-1 rounded-full">
+                          Laboratory
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <h2 className="text-white text-xl sm:text-2xl font-bold mb-3">
-                  AMIRLab
-                </h2>
-                <p className="text-gray-300 text-sm sm:text-base mb-4">
-                  Research and development laboratory management system with
-                  integrated project tracking.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="text-xs bg-green-500/10 border border-green-500/20 text-green-500 px-2 py-1 rounded-full">
-                    Research
-                  </span>
-                  <span className="text-xs bg-green-500/10 border border-green-500/20 text-green-500 px-2 py-1 rounded-full">
-                    Management
-                  </span>
-                  <span className="text-xs bg-green-500/10 border border-green-500/20 text-green-500 px-2 py-1 rounded-full">
-                    Lab
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* LMS (AMIRACADEMY) */}
-            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-green-900/20 to-black/40 p-1">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-black opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div
-                className="relative p-6 h-full border border-green-500/20 rounded-lg bg-black/40 backdrop-blur-sm 
-                            transform transition-transform duration-300 group-hover:-translate-y-1"
-              >
-                <div className="absolute top-0 right-0 p-4">
-                  <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
-                </div>
-                <h2 className="text-white text-xl sm:text-2xl font-bold mb-3">
-                  AMIRACADEMY LMS
-                </h2>
-                <p className="text-gray-300 text-sm sm:text-base mb-4">
-                  Comprehensive Learning Management System with interactive
-                  courses and student progress tracking.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="text-xs bg-green-500/10 border border-green-500/20 text-green-500 px-2 py-1 rounded-full">
-                    Education
-                  </span>
-                  <span className="text-xs bg-green-500/10 border border-green-500/20 text-green-500 px-2 py-1 rounded-full">
-                    LMS
-                  </span>
-                  <span className="text-xs bg-green-500/10 border border-green-500/20 text-green-500 px-2 py-1 rounded-full">
-                    E-learning
-                  </span>
+                <div className="absolute inset-0 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                  <div className="h-full w-full bg-black/90 p-8 flex flex-col justify-between backdrop-blur-xl border border-green-500/20">
+                    <div>
+                      <h3 className="text-green-400 text-2xl font-bold mb-4">Project Overview</h3>
+                      <p className="text-gray-300 leading-relaxed">
+                        Advanced Machine Intelligence Research Laboratory platform, facilitating cutting-edge research in AI and machine learning, with project management and collaboration tools.
+                      </p>
+                    </div>
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="text-green-400 mb-2">Tech Stack</h4>
+                        <div className="flex gap-3">
+                          <SiNextdotjs className="text-2xl text-gray-300 hover:text-green-400 transition-colors" />
+                          <FaPython className="text-2xl text-gray-300 hover:text-green-400 transition-colors" />
+                          <SiDjango className="text-2xl text-gray-300 hover:text-green-400 transition-colors" />
+                        </div>
+                      </div>
+                      <a href="#" className="inline-flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors">
+                        View Project <FaArrowRight className="text-sm" />
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* JMS */}
-            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-green-900/20 to-black/40 p-1">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-black opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div
-                className="relative p-6 h-full border border-green-500/20 rounded-lg bg-black/40 backdrop-blur-sm 
-                            transform transition-transform duration-300 group-hover:-translate-y-1"
-              >
-                <div className="absolute top-0 right-0 p-4">
-                  <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
+            {/* AMIRACADEMY LMS */}
+            <div className="group relative h-[400px] overflow-hidden rounded-xl perspective-1000">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-black/40 group-hover:opacity-0 transition-opacity duration-500"></div>
+              <div className="relative h-full transform transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div className="absolute inset-0">
+                  <div className="h-full w-full bg-[url('/images/amiracademy.jpg')] bg-cover bg-center">
+                    <div className="h-full w-full backdrop-blur-[2px] bg-black/40 p-8 flex flex-col justify-end">
+                      <h2 className="text-white text-3xl font-bold mb-3">AMIRACADEMY LMS</h2>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="text-xs bg-green-500/20 backdrop-blur-md border border-green-500/20 text-green-400 px-3 py-1 rounded-full">
+                          E-Learning
+                        </span>
+                        <span className="text-xs bg-green-500/20 backdrop-blur-md border border-green-500/20 text-green-400 px-3 py-1 rounded-full">
+                          LMS
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <h2 className="text-white text-xl sm:text-2xl font-bold mb-3">
-                  JMS
-                </h2>
-                <p className="text-gray-300 text-sm sm:text-base mb-4">
-                  Journal Management System for efficient handling of academic
-                  publications and reviews.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="text-xs bg-green-500/10 border border-green-500/20 text-green-500 px-2 py-1 rounded-full">
-                    Academic
-                  </span>
-                  <span className="text-xs bg-green-500/10 border border-green-500/20 text-green-500 px-2 py-1 rounded-full">
-                    Publishing
-                  </span>
-                  <span className="text-xs bg-green-500/10 border border-green-500/20 text-green-500 px-2 py-1 rounded-full">
-                    Management
-                  </span>
+                <div className="absolute inset-0 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                  <div className="h-full w-full bg-black/90 p-8 flex flex-col justify-between backdrop-blur-xl border border-green-500/20">
+                    <div>
+                      <h3 className="text-green-400 text-2xl font-bold mb-4">Project Overview</h3>
+                      <p className="text-gray-300 leading-relaxed">
+                        Comprehensive Learning Management System featuring course management, interactive content delivery, assessment tools, and student progress tracking.
+                      </p>
+                    </div>
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="text-green-400 mb-2">Tech Stack</h4>
+                        <div className="flex gap-3">
+                          <SiNextdotjs className="text-2xl text-gray-300 hover:text-green-400 transition-colors" />
+                          <FaPython className="text-2xl text-gray-300 hover:text-green-400 transition-colors" />
+                          <SiDjango className="text-2xl text-gray-300 hover:text-green-400 transition-colors" />
+                          <SiPostgresql className="text-2xl text-gray-300 hover:text-green-400 transition-colors" />
+                        </div>
+                      </div>
+                      <a href="#" className="inline-flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors">
+                        View Project <FaArrowRight className="text-sm" />
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Arbab */}
-            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-green-900/20 to-black/40 p-1">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-black opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div
-                className="relative p-6 h-full border border-green-500/20 rounded-lg bg-black/40 backdrop-blur-sm 
-                            transform transition-transform duration-300 group-hover:-translate-y-1"
-              >
-                <div className="absolute top-0 right-0 p-4">
-                  <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
+            {/* JMS Project */}
+            <div className="group relative h-[400px] overflow-hidden rounded-xl perspective-1000 lg:mt-12">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-black/40 group-hover:opacity-0 transition-opacity duration-500"></div>
+              <div className="relative h-full transform transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div className="absolute inset-0">
+                  <div className="h-full w-full bg-[url('/images/jms.jpg')] bg-cover bg-center">
+                    <div className="h-full w-full backdrop-blur-[2px] bg-black/40 p-8 flex flex-col justify-end">
+                      <h2 className="text-white text-3xl font-bold mb-3">JMS</h2>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="text-xs bg-green-500/20 backdrop-blur-md border border-green-500/20 text-green-400 px-3 py-1 rounded-full">
+                          Management
+                        </span>
+                        <span className="text-xs bg-green-500/20 backdrop-blur-md border border-green-500/20 text-green-400 px-3 py-1 rounded-full">
+                          System
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <h2 className="text-white text-xl sm:text-2xl font-bold mb-3">
-                  Arbab
-                </h2>
-                <p className="text-gray-300 text-sm sm:text-base mb-4">
-                  Custom enterprise solution for business management and
-                  operations optimization.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="text-xs bg-green-500/10 border border-green-500/20 text-green-500 px-2 py-1 rounded-full">
-                    Enterprise
-                  </span>
-                  <span className="text-xs bg-green-500/10 border border-green-500/20 text-green-500 px-2 py-1 rounded-full">
-                    Business
-                  </span>
-                  <span className="text-xs bg-green-500/10 border border-green-500/20 text-green-500 px-2 py-1 rounded-full">
-                    Management
-                  </span>
+                <div className="absolute inset-0 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                  <div className="h-full w-full bg-black/90 p-8 flex flex-col justify-between backdrop-blur-xl border border-green-500/20">
+                    <div>
+                      <h3 className="text-green-400 text-2xl font-bold mb-4">Project Overview</h3>
+                      <p className="text-gray-300 leading-relaxed">
+                        Journal Management System for academic publications, featuring manuscript submission, peer review, and publication workflow management.
+                      </p>
+                    </div>
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="text-green-400 mb-2">Tech Stack</h4>
+                        <div className="flex gap-3">
+                          <SiNextdotjs className="text-2xl text-gray-300 hover:text-green-400 transition-colors" />
+                          <FaPython className="text-2xl text-gray-300 hover:text-green-400 transition-colors" />
+                          <SiDjango className="text-2xl text-gray-300 hover:text-green-400 transition-colors" />
+                        </div>
+                      </div>
+                      <a href="#" className="inline-flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors">
+                        View Project <FaArrowRight className="text-sm" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Arbab Project */}
+            <div className="group relative h-[400px] overflow-hidden rounded-xl perspective-1000">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-black/40 group-hover:opacity-0 transition-opacity duration-500"></div>
+              <div className="relative h-full transform transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div className="absolute inset-0">
+                  <div className="h-full w-full bg-[url('/images/arbab.jpg')] bg-cover bg-center">
+                    <div className="h-full w-full backdrop-blur-[2px] bg-black/40 p-8 flex flex-col justify-end">
+                      <h2 className="text-white text-3xl font-bold mb-3">Arbab</h2>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="text-xs bg-green-500/20 backdrop-blur-md border border-green-500/20 text-green-400 px-3 py-1 rounded-full">
+                          E-Commerce
+                        </span>
+                        <span className="text-xs bg-green-500/20 backdrop-blur-md border border-green-500/20 text-green-400 px-3 py-1 rounded-full">
+                          Platform
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute inset-0 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                  <div className="h-full w-full bg-black/90 p-8 flex flex-col justify-between backdrop-blur-xl border border-green-500/20">
+                    <div>
+                      <h3 className="text-green-400 text-2xl font-bold mb-4">Project Overview</h3>
+                      <p className="text-gray-300 leading-relaxed">
+                        Modern e-commerce platform with advanced features including real-time inventory management, secure payment processing, and customer relationship management.
+                      </p>
+                    </div>
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="text-green-400 mb-2">Tech Stack</h4>
+                        <div className="flex gap-3">
+                          <SiNextdotjs className="text-2xl text-gray-300 hover:text-green-400 transition-colors" />
+                          <FaPython className="text-2xl text-gray-300 hover:text-green-400 transition-colors" />
+                          <SiDjango className="text-2xl text-gray-300 hover:text-green-400 transition-colors" />
+                          <SiPostgresql className="text-2xl text-gray-300 hover:text-green-400 transition-colors" />
+                        </div>
+                      </div>
+                      <a href="#" className="inline-flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors">
+                        View Project <FaArrowRight className="text-sm" />
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

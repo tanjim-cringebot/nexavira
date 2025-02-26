@@ -11,7 +11,7 @@ const Footer = () => {
 
   return (
     <footer className="mt-16 sm:mt-20 pb-8 border-t border-green-500 border-opacity-20">
-      <div className="pt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="pt-8 grid grid-cols-1 md:grid-cols-3 gap-8 container mx-auto px-4 sm:px-6 lg:px-8">
         <div>
           <h3 className="text-white text-lg font-bold mb-4">Contact Us</h3>
           <p className="text-white text-sm">Email: info@quantanyx.studio</p>
