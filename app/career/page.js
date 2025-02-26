@@ -16,7 +16,7 @@ export default function Career() {
   }
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-32 mt-36 pb-16">
       {/* Header Section */}
       <div className="text-center mb-16">
         <h1 className="text-white text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 relative inline-block">
@@ -41,25 +41,32 @@ export default function Career() {
             No Current Openings
           </h2>
           <p className="text-gray-400 mb-8">
-            While we don't have any positions available at the moment, we're always interested in connecting with talented individuals.
+            While we don't have any positions available at the moment, we're
+            always interested in connecting with talented individuals.
           </p>
-          
+
           {/* Future Opportunities Section */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
             <div className="p-4 border border-green-500/10 rounded-lg bg-black/20">
               <FaBriefcase className="text-green-500 text-2xl mb-3 mx-auto" />
               <h3 className="text-white font-semibold mb-2">Future Roles</h3>
-              <p className="text-gray-400 text-sm">Stay tuned for upcoming positions</p>
+              <p className="text-gray-400 text-sm">
+                Stay tuned for upcoming positions
+              </p>
             </div>
             <div className="p-4 border border-green-500/10 rounded-lg bg-black/20">
               <FaRegClock className="text-green-500 text-2xl mb-3 mx-auto" />
               <h3 className="text-white font-semibold mb-2">Regular Updates</h3>
-              <p className="text-gray-400 text-sm">Check back for new opportunities</p>
+              <p className="text-gray-400 text-sm">
+                Check back for new opportunities
+              </p>
             </div>
             <div className="p-4 border border-green-500/10 rounded-lg bg-black/20">
               <BsPersonWorkspace className="text-green-500 text-2xl mb-3 mx-auto" />
               <h3 className="text-white font-semibold mb-2">Remote Work</h3>
-              <p className="text-gray-400 text-sm">Flexible working arrangements</p>
+              <p className="text-gray-400 text-sm">
+                Flexible working arrangements
+              </p>
             </div>
           </div>
 
@@ -75,8 +82,8 @@ export default function Career() {
                 className="text-green-500 hover:text-green-400 transition-colors duration-300"
               >
                 careers@quantanyx.studio
-              </a>
-              {" "}and we'll keep you updated on future opportunities.
+              </a>{" "}
+              and we'll keep you updated on future opportunities.
             </p>
             <button
               className="group relative px-6 py-3 bg-green-500/10 text-white rounded-lg overflow-hidden transition-all duration-300
@@ -99,27 +106,39 @@ export default function Career() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="p-6 backdrop-blur-sm bg-black/20 border border-green-500/10 rounded-xl">
-              <h3 className="text-white text-lg font-semibold mb-3">Innovation First</h3>
+              <h3 className="text-white text-lg font-semibold mb-3">
+                Innovation First
+              </h3>
               <p className="text-gray-400">
-                Work on cutting-edge projects using the latest technologies and methodologies
+                Work on cutting-edge projects using the latest technologies and
+                methodologies
               </p>
             </div>
             <div className="p-6 backdrop-blur-sm bg-black/20 border border-green-500/10 rounded-xl">
-              <h3 className="text-white text-lg font-semibold mb-3">Growth & Learning</h3>
+              <h3 className="text-white text-lg font-semibold mb-3">
+                Growth & Learning
+              </h3>
               <p className="text-gray-400">
-                Continuous learning opportunities and professional development support
+                Continuous learning opportunities and professional development
+                support
               </p>
             </div>
             <div className="p-6 backdrop-blur-sm bg-black/20 border border-green-500/10 rounded-xl">
-              <h3 className="text-white text-lg font-semibold mb-3">Work-Life Balance</h3>
+              <h3 className="text-white text-lg font-semibold mb-3">
+                Work-Life Balance
+              </h3>
               <p className="text-gray-400">
-                Flexible schedules and remote work options for optimal work-life integration
+                Flexible schedules and remote work options for optimal work-life
+                integration
               </p>
             </div>
             <div className="p-6 backdrop-blur-sm bg-black/20 border border-green-500/10 rounded-xl">
-              <h3 className="text-white text-lg font-semibold mb-3">Collaborative Culture</h3>
+              <h3 className="text-white text-lg font-semibold mb-3">
+                Collaborative Culture
+              </h3>
               <p className="text-gray-400">
-                Join a team of passionate professionals in a supportive environment
+                Join a team of passionate professionals in a supportive
+                environment
               </p>
             </div>
           </div>
@@ -127,4 +146,4 @@ export default function Career() {
       </div>
     </div>
   );
-} 
+}
