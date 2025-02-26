@@ -13,7 +13,8 @@ import {
 import { SiDjango, SiNextdotjs, SiPostgresql } from "react-icons/si";
 import { BiBrain } from "react-icons/bi";
 import { AiOutlineCloud } from "react-icons/ai";
-
+import HeroSection
+ from "./components/HeroSection";
 export default function Home() {
   const [count, setCount] = useState(0);
   const [isClient, setIsClient] = useState(false);
@@ -48,7 +49,8 @@ export default function Home() {
   return (
     <div suppressHydrationWarning>
       {/* Main Content - Add padding-top to account for fixed navbar */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-48 sm:pt-52">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-48 sm:pt-60">
+        <HeroSection />
         {/* Welcome message with responsive text */}
         <div className="text-white text-xl sm:text-2xl mt-6 sm:mt-8 font-bold text-center sm:text-left">
           Welcome to Quantanyx Studio
