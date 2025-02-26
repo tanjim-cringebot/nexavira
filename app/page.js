@@ -97,7 +97,10 @@ export default function Home() {
               </div>
 
               {/* Desktop Navigation */}
-              <div className="hidden sm:flex sm:justify-center sm:w-full">
+              <div className="hidden sm:flex sm:justify-between sm:w-full">
+                <div className="">
+                  <img src="/logo.png" alt="logo" className="h-8 w-auto" />
+                </div>
                 <div className="flex items-center space-x-2">
                   <a
                     href="#home"
@@ -203,7 +206,7 @@ export default function Home() {
         </div>
 
         {/* Description with responsive text */}
-        <div className="text-white text-sm sm:text-md mt-2 sm:mt-4 font-bold text-center sm:text-left">
+        <div className="text-white text-sm sm:text-md mt-2 sm:mt-4  text-center sm:text-left">
           We are a team of developers who are passionate about creating
           innovative solutions.
         </div>
@@ -503,18 +506,100 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Contact Section */}
+        <div className="mt-16 sm:mt-20 px-0 sm:px-6 lg:px-8" id="contact">
+          <div className="text-center mb-8 sm:mb-12">
+            <h1 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 relative inline-block">
+              Get in Touch
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-1/2 h-0.5 bg-gradient-to-r from-transparent via-green-500 to-transparent"></div>
+            </h1>
+            <p className="text-gray-400 text-xs sm:text-sm md:text-base max-w-2xl mx-auto mt-4 sm:mt-6 px-4 sm:px-0">
+              Have a project in mind? We'd love to hear from you. Send us a
+              message and we'll respond as soon as possible.
+            </p>
+          </div>
+
+          <div className="max-w-2xl mx-auto relative">
+            {/* Decorative elements - Hidden on mobile */}
+            <div className="hidden sm:block absolute -top-4 -left-4 w-8 h-8 border-l-2 border-t-2 border-green-500/40"></div>
+            <div className="hidden sm:block absolute -bottom-4 -right-4 w-8 h-8 border-r-2 border-b-2 border-green-500/40"></div>
+
+            <form className="space-y-4 sm:space-y-6 backdrop-blur-sm bg-black/20 p-4 sm:p-6 md:p-8 rounded-xl border border-green-500/10 shadow-lg">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                <div className="relative group">
+                  <input
+                    type="text"
+                    name="name"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-black/40 border border-green-500/20 rounded-lg 
+                             focus:outline-none focus:border-green-500/40 focus:ring-1 focus:ring-green-500/20 
+                             text-white text-sm sm:text-base transition-all duration-300 placeholder-gray-500"
+                    placeholder="Your Name"
+                  />
+                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-500 transition-all duration-300 group-focus-within:w-full"></div>
+                </div>
+                <div className="relative group">
+                  <input
+                    type="email"
+                    name="email"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-black/40 border border-green-500/20 rounded-lg 
+                             focus:outline-none focus:border-green-500/40 focus:ring-1 focus:ring-green-500/20 
+                             text-white text-sm sm:text-base transition-all duration-300 placeholder-gray-500"
+                    placeholder="Your Email"
+                  />
+                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-500 transition-all duration-300 group-focus-within:w-full"></div>
+                </div>
+              </div>
+              <div className="relative group">
+                <input
+                  type="text"
+                  name="subject"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-black/40 border border-green-500/20 rounded-lg 
+                           focus:outline-none focus:border-green-500/40 focus:ring-1 focus:ring-green-500/20 
+                           text-white text-sm sm:text-base transition-all duration-300 placeholder-gray-500"
+                  placeholder="Subject"
+                />
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-500 transition-all duration-300 group-focus-within:w-full"></div>
+              </div>
+              <div className="relative group">
+                <textarea
+                  name="message"
+                  rows="4"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-black/40 border border-green-500/20 rounded-lg 
+                           focus:outline-none focus:border-green-500/40 focus:ring-1 focus:ring-green-500/20 
+                           text-white text-sm sm:text-base transition-all duration-300 placeholder-gray-500 resize-none"
+                  placeholder="Your Message"
+                ></textarea>
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-500 transition-all duration-300 group-focus-within:w-full"></div>
+              </div>
+              <div className="text-center pt-2 sm:pt-4">
+                <button
+                  type="submit"
+                  className="group relative w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3 bg-green-500/10 text-white rounded-lg overflow-hidden transition-all duration-300
+                           hover:bg-green-500/20 border border-green-500/20 hover:border-green-500/40 text-sm sm:text-base"
+                >
+                  <div className="relative z-10">Send Message</div>
+                  <div
+                    className="absolute inset-0 bg-gradient-to-r from-green-500/0 via-green-500/10 to-green-500/0 
+                                transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"
+                  ></div>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
         {/* Footer */}
         <footer className="mt-16 sm:mt-20 pb-8 border-t border-green-500 border-opacity-20">
           <div className="pt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <h3 className="text-white text-lg font-bold mb-4">Contact Us</h3>
-              <p className="text-white text-sm">Email: info@quantanyx.com</p>
-              <p className="text-white text-sm">Phone: +1 234 567 890</p>
+              <p className="text-white text-sm">Email: info@quantanyx.studio</p>
+              <p className="text-white text-sm">Phone: +8801717171717</p>
             </div>
 
             <div>
               <h3 className="text-white text-lg font-bold mb-4">Location</h3>
-              <p className="text-white text-sm">Almaty, Kazakhstan</p>
+              <p className="text-white text-sm">Dhaka, Bangladesh</p>
             </div>
 
             <div>
