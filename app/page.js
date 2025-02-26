@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import {
   FaReact,
@@ -18,9 +18,23 @@ export default function Home() {
   const [count, setCount] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+  const [mousePositions, setMousePositions] = useState({
+    card1: { x: 0, y: 0 },
+    card2: { x: 0, y: 0 },
+    card3: { x: 0, y: 0 },
+    card4: { x: 0, y: 0 },
+    card5: { x: 0, y: 0 },
+    card6: { x: 0, y: 0 },
+  });
+
+  // Add useEffect to handle client-side initialization
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Add scroll event listener
-  React.useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
@@ -28,6 +42,22 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Updated mouse move handler with card identifier
+  const handleMouseMove = (e, card, cardId) => {
+    const rect = card.getBoundingClientRect();
+    setMousePositions((prev) => ({
+      ...prev,
+      [cardId]: {
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      },
+    }));
+  };
+
+  if (!isClient) {
+    return null; // or a loading state
+  }
 
   return (
     <>
@@ -220,86 +250,142 @@ export default function Home() {
           {/* Service cards with responsive grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {/* First card */}
-            <div className="px-4 py-6 sm:p-6 border border-green-500 border-opacity-20 rounded-lg hover:border-opacity-40 transition-all duration-300">
-              <div className="flex items-center gap-2 mb-3">
-                <SiNextdotjs className="text-green-500" size={28} sm={32} />
-                <FaReact className="text-green-500" size={28} sm={32} />
+            <div
+              className="group relative overflow-hidden px-4 py-6 sm:p-6 border border-green-500 border-opacity-20 rounded-lg hover:border-opacity-40 transition-all duration-300"
+              onMouseMove={(e) => handleMouseMove(e, e.currentTarget, "card1")}
+              style={{
+                background: `radial-gradient(circle at ${mousePositions.card1.x}px ${mousePositions.card1.y}px, rgba(34, 197, 94, 0.1) 0%, transparent 50%)`,
+              }}
+            >
+              <div className="relative z-10">
+                <div className="flex items-center gap-2 mb-3">
+                  <SiNextdotjs className="text-green-500" size={28} sm={32} />
+                  <FaReact className="text-green-500" size={28} sm={32} />
+                </div>
+                <h2 className="text-white text-lg sm:text-xl font-bold mb-2">
+                  React & Next.js
+                </h2>
+                <p className="text-white text-sm sm:text-base">
+                  Modern, performant web applications built with React and
+                  Next.js. Featuring server-side rendering and optimal user
+                  experiences.
+                </p>
               </div>
-              <h2 className="text-white text-lg sm:text-xl font-bold mb-2">
-                React & Next.js
-              </h2>
-              <p className="text-white text-sm sm:text-base">
-                Modern, performant web applications built with React and
-                Next.js. Featuring server-side rendering and optimal user
-                experiences.
-              </p>
             </div>
 
             {/* Second card */}
-            <div className="px-4 py-6 sm:p-6 border border-green-500 border-opacity-20 rounded-lg hover:border-opacity-40 transition-all duration-300">
-              <div className="flex items-center gap-2 mb-3">
-                <FaPython className="text-green-500" size={28} sm={32} />
-                <SiDjango className="text-green-500" size={28} sm={32} />
+            <div
+              className="group relative overflow-hidden px-4 py-6 sm:p-6 border border-green-500 border-opacity-20 rounded-lg hover:border-opacity-40 transition-all duration-300"
+              onMouseMove={(e) => handleMouseMove(e, e.currentTarget, "card2")}
+              style={{
+                background: `radial-gradient(circle at ${mousePositions.card2.x}px ${mousePositions.card2.y}px, rgba(34, 197, 94, 0.1) 0%, transparent 50%)`,
+              }}
+            >
+              <div className="relative z-10">
+                <div className="flex items-center gap-2 mb-3">
+                  <FaPython className="text-green-500" size={28} sm={32} />
+                  <SiDjango className="text-green-500" size={28} sm={32} />
+                </div>
+                <h2 className="text-white text-lg sm:text-xl font-bold mb-2">
+                  Django Development
+                </h2>
+                <p className="text-white text-sm sm:text-base">
+                  Robust backend solutions with Django. Building secure,
+                  scalable APIs and web applications with Python's most powerful
+                  framework.
+                </p>
               </div>
-              <h2 className="text-white text-lg sm:text-xl font-bold mb-2">
-                Django Development
-              </h2>
-              <p className="text-white text-sm sm:text-base">
-                Robust backend solutions with Django. Building secure, scalable
-                APIs and web applications with Python's most powerful framework.
-              </p>
             </div>
 
-            {/* Remaining cards following the same pattern */}
-            <div className="px-4 py-6 sm:p-6 border border-green-500 border-opacity-20 rounded-lg hover:border-opacity-40 transition-all duration-300">
-              <BiBrain className="text-green-500 mb-3" size={28} sm={32} />
-              <h2 className="text-white text-lg sm:text-xl font-bold mb-2">
-                Machine Learning
-              </h2>
-              <p className="text-white text-sm sm:text-base">
-                Custom ML solutions for your business needs. From data analysis
-                to predictive modeling and AI integration.
-              </p>
-            </div>
-
-            <div className="px-4 py-6 sm:p-6 border border-green-500 border-opacity-20 rounded-lg hover:border-opacity-40 transition-all duration-300">
-              <FaGlobe className="text-green-500 mb-3" size={28} sm={32} />
-              <h2 className="text-white text-lg sm:text-xl font-bold mb-2">
-                Website Development
-              </h2>
-              <p className="text-white text-sm sm:text-base">
-                End-to-end website development with modern tech stack.
-                Responsive designs, SEO optimization, and exceptional user
-                experience.
-              </p>
-            </div>
-
-            <div className="px-4 py-6 sm:p-6 border border-green-500 border-opacity-20 rounded-lg hover:border-opacity-40 transition-all duration-300">
-              <div className="flex items-center gap-2 mb-3">
-                <FaCode className="text-green-500" size={28} sm={32} />
-                <FaDatabase className="text-green-500" size={28} sm={32} />
+            {/* Third card */}
+            <div
+              className="group relative overflow-hidden px-4 py-6 sm:p-6 border border-green-500 border-opacity-20 rounded-lg hover:border-opacity-40 transition-all duration-300"
+              onMouseMove={(e) => handleMouseMove(e, e.currentTarget, "card3")}
+              style={{
+                background: `radial-gradient(circle at ${mousePositions.card3.x}px ${mousePositions.card3.y}px, rgba(34, 197, 94, 0.1) 0%, transparent 50%)`,
+              }}
+            >
+              <div className="relative z-10">
+                <BiBrain className="text-green-500 mb-3" size={28} sm={32} />
+                <h2 className="text-white text-lg sm:text-xl font-bold mb-2">
+                  Machine Learning
+                </h2>
+                <p className="text-white text-sm sm:text-base">
+                  Custom ML solutions for your business needs. From data
+                  analysis to predictive modeling and AI integration.
+                </p>
               </div>
-              <h2 className="text-white text-lg sm:text-xl font-bold mb-2">
-                Software Development
-              </h2>
-              <p className="text-white text-sm sm:text-base">
-                Custom software solutions tailored to your business needs. From
-                desktop applications to complex enterprise systems.
-              </p>
             </div>
 
-            <div className="px-4 py-6 sm:p-6 border border-green-500 border-opacity-20 rounded-lg hover:border-opacity-40 transition-all duration-300">
-              <div className="flex items-center gap-2 mb-3">
-                <SiPostgresql className="text-green-500" size={28} sm={32} />
-                <AiOutlineCloud className="text-green-500" size={28} sm={32} />
+            {/* Fourth card */}
+            <div
+              className="group relative overflow-hidden px-4 py-6 sm:p-6 border border-green-500 border-opacity-20 rounded-lg hover:border-opacity-40 transition-all duration-300"
+              onMouseMove={(e) => handleMouseMove(e, e.currentTarget, "card4")}
+              style={{
+                background: `radial-gradient(circle at ${mousePositions.card4.x}px ${mousePositions.card4.y}px, rgba(34, 197, 94, 0.1) 0%, transparent 50%)`,
+              }}
+            >
+              <div className="relative z-10">
+                <FaGlobe className="text-green-500 mb-3" size={28} sm={32} />
+                <h2 className="text-white text-lg sm:text-xl font-bold mb-2">
+                  Website Development
+                </h2>
+                <p className="text-white text-sm sm:text-base">
+                  End-to-end website development with modern tech stack.
+                  Responsive designs, SEO optimization, and exceptional user
+                  experience.
+                </p>
               </div>
-              <h2 className="text-white text-lg sm:text-xl font-bold mb-2">
-                Database & Cloud Solutions
-              </h2>
-              <p className="text-white text-sm sm:text-base">
-                Database design, optimization, and cloud infrastructure setup.
-                Ensuring scalable and reliable data management systems.
-              </p>
+            </div>
+
+            {/* Fifth card */}
+            <div
+              className="group relative overflow-hidden px-4 py-6 sm:p-6 border border-green-500 border-opacity-20 rounded-lg hover:border-opacity-40 transition-all duration-300"
+              onMouseMove={(e) => handleMouseMove(e, e.currentTarget, "card5")}
+              style={{
+                background: `radial-gradient(circle at ${mousePositions.card5.x}px ${mousePositions.card5.y}px, rgba(34, 197, 94, 0.1) 0%, transparent 50%)`,
+              }}
+            >
+              <div className="relative z-10">
+                <div className="flex items-center gap-2 mb-3">
+                  <FaCode className="text-green-500" size={28} sm={32} />
+                  <FaDatabase className="text-green-500" size={28} sm={32} />
+                </div>
+                <h2 className="text-white text-lg sm:text-xl font-bold mb-2">
+                  Software Development
+                </h2>
+                <p className="text-white text-sm sm:text-base">
+                  Custom software solutions tailored to your business needs.
+                  From desktop applications to complex enterprise systems.
+                </p>
+              </div>
+            </div>
+
+            {/* Sixth card */}
+            <div
+              className="group relative overflow-hidden px-4 py-6 sm:p-6 border border-green-500 border-opacity-20 rounded-lg hover:border-opacity-40 transition-all duration-300"
+              onMouseMove={(e) => handleMouseMove(e, e.currentTarget, "card6")}
+              style={{
+                background: `radial-gradient(circle at ${mousePositions.card6.x}px ${mousePositions.card6.y}px, rgba(34, 197, 94, 0.1) 0%, transparent 50%)`,
+              }}
+            >
+              <div className="relative z-10">
+                <div className="flex items-center gap-2 mb-3">
+                  <SiPostgresql className="text-green-500" size={28} sm={32} />
+                  <AiOutlineCloud
+                    className="text-green-500"
+                    size={28}
+                    sm={32}
+                  />
+                </div>
+                <h2 className="text-white text-lg sm:text-xl font-bold mb-2">
+                  Database & Cloud Solutions
+                </h2>
+                <p className="text-white text-sm sm:text-base">
+                  Database design, optimization, and cloud infrastructure setup.
+                  Ensuring scalable and reliable data management systems.
+                </p>
+              </div>
             </div>
           </div>
         </div>
