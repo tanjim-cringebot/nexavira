@@ -10,6 +10,7 @@ import {
   FaGithub,
   FaLinkedin,
   FaArrowRight,
+  FaTerminal,
 } from "react-icons/fa";
 import { SiDjango, SiNextdotjs, SiPostgresql } from "react-icons/si";
 import { BiBrain } from "react-icons/bi";
@@ -28,6 +29,10 @@ export default function Home() {
     card5: { x: 0, y: 0 },
     card6: { x: 0, y: 0 },
   });
+  const [showTerminal, setShowTerminal] = useState(false);
+  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
+  const [isTerminalMinimized, setIsTerminalMinimized] = useState(false);
+  const [isTerminalMaximized, setIsTerminalMaximized] = useState(false);
 
   // Add useEffect to handle client-side initialization
   useEffect(() => {
@@ -35,6 +40,15 @@ export default function Home() {
   }, []);
 
   // Add scroll event listener
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show button when scrolled down 200px
+      setShowTerminal(window.scrollY > 200);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Updated mouse move handler with card identifier
   const handleMouseMove = (e, card, cardId) => {
@@ -298,6 +312,64 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* Floating Terminal Button */}
+      <div
+        className={`fixed bottom-8 right-8 transition-all duration-300 z-[100] ${
+          (showTerminal && !isTerminalOpen) || isTerminalMinimized
+            ? "translate-y-0 opacity-100"
+            : "translate-y-16 opacity-0"
+        }`}
+      >
+        <button
+          onClick={() => {
+            setIsTerminalOpen(true);
+            setIsTerminalMinimized(false);
+          }}
+          className="group flex items-center justify-center w-12 h-12 bg-black/80 border border-green-500/20 rounded-full 
+                     hover:bg-black/90 hover:border-green-500/40 transition-all duration-300
+                     text-green-400 backdrop-blur-sm hover:scale-110"
+          title="Open Terminal"
+        >
+          <FaTerminal className="text-xl" />
+          <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+        </button>
+      </div>
+
+      {/* Terminal Modal */}
+      {isTerminalOpen && (
+        <div
+          className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-[110] 
+                        ${
+                          isTerminalMaximized
+                            ? ""
+                            : "flex items-center justify-center p-4"
+                        }
+                        ${isTerminalMinimized ? "hidden" : ""}`}
+        >
+          <div
+            className={`w-full ${isTerminalMaximized ? "h-full" : "max-w-3xl"}`}
+          >
+            <div className="relative h-full">
+              <HeroSection
+                onClose={() => {
+                  setIsTerminalOpen(false);
+                  setIsTerminalMaximized(false);
+                }}
+                onMinimize={() => {
+                  setIsTerminalMinimized(true);
+                  setIsTerminalMaximized(false);
+                }}
+                onMaximize={() => {
+                  setIsTerminalMaximized(!isTerminalMaximized);
+                  setIsTerminalMinimized(false);
+                }}
+                isMaximized={isTerminalMaximized}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
