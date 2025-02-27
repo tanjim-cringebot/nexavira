@@ -1,26 +1,26 @@
 "use client";
-import React, { useState } from 'react';
-import HeroSection from '../components/HeroSection';
-import { FaLinkedin, FaTwitter, FaGithub } from 'react-icons/fa';
+import React, { useState } from "react";
+import HeroSection from "../components/HeroSection";
+import { FaLinkedin, FaTwitter, FaGithub } from "react-icons/fa";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here
-    console.log('Form submitted:', formData);
+    console.log("Form submitted:", formData);
   };
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -35,7 +35,7 @@ export default function Contact() {
         <p className="text-gray-400 text-sm sm:text-base max-w-2xl mx-auto">
           Have a question or want to work together? Let's connect!
         </p>
-        <HeroSection />
+        {/* <HeroSection /> */}
       </div>
 
       {/* Contact Form Section */}
@@ -55,8 +55,8 @@ export default function Contact() {
             <div>
               <h3 className="text-green-400 font-semibold mb-1">Social</h3>
               <div className="flex space-x-6">
-                <a 
-                  href="#" 
+                <a
+                  href="#"
                   className="text-gray-300 hover:text-green-400 transition-colors flex items-center gap-2"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -64,8 +64,8 @@ export default function Contact() {
                   <FaLinkedin className="text-xl" />
                   <span>LinkedIn</span>
                 </a>
-                <a 
-                  href="#" 
+                <a
+                  href="#"
                   className="text-gray-300 hover:text-green-400 transition-colors flex items-center gap-2"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -73,8 +73,8 @@ export default function Contact() {
                   <FaTwitter className="text-xl" />
                   <span>Twitter</span>
                 </a>
-                <a 
-                  href="#" 
+                <a
+                  href="#"
                   className="text-gray-300 hover:text-green-400 transition-colors flex items-center gap-2"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -88,7 +88,10 @@ export default function Contact() {
         </div>
 
         {/* Contact Form */}
-        <form onSubmit={handleSubmit} className="backdrop-blur-md bg-black/30 p-6 rounded-lg border border-green-500/20">
+        <form
+          onSubmit={handleSubmit}
+          className="backdrop-blur-md bg-black/30 p-6 rounded-lg border border-green-500/20"
+        >
           <div className="space-y-4">
             <div>
               <label htmlFor="name" className="block text-green-400 mb-2">
@@ -157,4 +160,4 @@ export default function Contact() {
       </div>
     </div>
   );
-} 
+}
