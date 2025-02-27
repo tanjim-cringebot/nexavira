@@ -66,7 +66,6 @@ export default function Home() {
     <div suppressHydrationWarning>
       {/* Main Content - Add padding-top to account for fixed navbar */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-48 sm:pt-60">
-        <HeroSection />
         {/* Welcome message with responsive text */}
         <div className="text-white text-xl sm:text-2xl mt-6 sm:mt-8 font-bold text-center sm:text-left">
           Welcome to Quantanyx Studio
@@ -76,6 +75,9 @@ export default function Home() {
         <div className="text-white text-sm sm:text-md mt-2 sm:mt-4  text-center sm:text-left">
           We are a team of developers who are passionate about creating
           innovative solutions.
+        </div>
+        <div className="mt-8 sm:mt-12 lg:mt-16">
+          <HeroSection />
         </div>
 
         {/* Services section */}
