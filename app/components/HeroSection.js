@@ -19,6 +19,8 @@ const HeroSection = ({ onClose, onMinimize, onMaximize, isMaximized }) => {
   const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(0);
+  const [commandHistory, setCommandHistory] = useState([]);
+  const [historyIndex, setHistoryIndex] = useState(-1);
   const terminalRef = useRef(null);
 
   const validCommands = {
@@ -253,14 +255,31 @@ const HeroSection = ({ onClose, onMinimize, onMaximize, isMaximized }) => {
         setInputValue(suggestions[selectedSuggestionIndex]);
         setSuggestions([]);
       }
-    } else if (e.key === "ArrowUp" || e.key === "ArrowDown") {
+    } else if (e.key === "ArrowUp") {
       e.preventDefault();
       if (suggestions.length > 0) {
-        setSelectedSuggestionIndex((prev) =>
-          e.key === "ArrowUp"
-            ? (prev - 1 + suggestions.length) % suggestions.length
-            : (prev + 1) % suggestions.length
+        setSelectedSuggestionIndex(
+          (prev) => (prev - 1 + suggestions.length) % suggestions.length
         );
+      } else if (commandHistory.length > 0) {
+        const newIndex = historyIndex + 1;
+        if (newIndex < commandHistory.length) {
+          setHistoryIndex(newIndex);
+          setInputValue(commandHistory[commandHistory.length - 1 - newIndex]);
+        }
+      }
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      if (suggestions.length > 0) {
+        setSelectedSuggestionIndex((prev) => (prev + 1) % suggestions.length);
+      } else if (historyIndex > -1) {
+        const newIndex = historyIndex - 1;
+        setHistoryIndex(newIndex);
+        if (newIndex === -1) {
+          setInputValue("");
+        } else {
+          setInputValue(commandHistory[commandHistory.length - 1 - newIndex]);
+        }
       }
     }
   };
@@ -270,11 +289,16 @@ const HeroSection = ({ onClose, onMinimize, onMaximize, isMaximized }) => {
     setInputValue(value);
     setSuggestions(value ? getSuggestions(value) : []);
     setSelectedSuggestionIndex(0);
+    setHistoryIndex(-1); // Reset history index when typing
   };
 
   const handleInputSubmit = async (e) => {
     e.preventDefault();
     if (!inputValue.trim()) return;
+
+    // Add command to history
+    setCommandHistory((prev) => [...prev, inputValue.trim()]);
+    setHistoryIndex(-1);
 
     const [command, ...args] = inputValue.trim().split(" ");
     const fullCommand = inputValue.trim().toLowerCase();
@@ -420,69 +444,72 @@ const HeroSection = ({ onClose, onMinimize, onMaximize, isMaximized }) => {
             isMaximized ? "h-[calc(100vh-40px)]" : "h-[400px]"
           } scrollbar-thin scrollbar-thumb-green-500/20 scrollbar-track-black/20 hover:scrollbar-thumb-green-500/40`}
         >
-          {displayedCommands.map((command, index) => (
-            <div key={index} className="text-gray-300 mb-2">
-              {command.isCommand ? (
-                <div className="flex items-center">
-                  {command.isExecuted && (
-                    <span className="text-green-500 mr-1">✓</span>
-                  )}
-                  {getCommandIcon(command.text)}
-                  <span>
-                    {command.text.split(" ").map((word, i) => (
-                      <span
-                        key={i}
-                        className={
-                          Object.keys(validCommands).includes(
-                            word.toLowerCase().trim()
-                          )
-                            ? "text-blue-400"
-                            : "text-gray-300"
-                        }
-                      >
-                        {word}{" "}
-                      </span>
-                    ))}
-                  </span>
-                </div>
-              ) : command.isHtml ? (
-                <div dangerouslySetInnerHTML={{ __html: command.text }} />
-              ) : (
-                <div className="flex items-start">
-                  <FiInfo className="text-green-500 mr-2 mt-1" />
-                  <pre className="whitespace-pre-wrap text-gray-300 font-mono">
-                    {command.text}
-                  </pre>
-                </div>
-              )}
-            </div>
-          ))}
+          {/* Commands Display */}
+          <div className="min-h-[calc(100%-2rem)]">
+            {displayedCommands.map((command, index) => (
+              <div key={index} className="text-gray-300 mb-2">
+                {command.isCommand ? (
+                  <div className="flex items-center">
+                    {command.isExecuted && (
+                      <span className="text-green-500 mr-1">✓</span>
+                    )}
+                    {getCommandIcon(command.text)}
+                    <span>
+                      {command.text.split(" ").map((word, i) => (
+                        <span
+                          key={i}
+                          className={
+                            Object.keys(validCommands).includes(
+                              word.toLowerCase().trim()
+                            )
+                              ? "text-blue-400"
+                              : "text-gray-300"
+                          }
+                        >
+                          {word}{" "}
+                        </span>
+                      ))}
+                    </span>
+                  </div>
+                ) : command.isHtml ? (
+                  <div dangerouslySetInnerHTML={{ __html: command.text }} />
+                ) : (
+                  <div className="flex items-start">
+                    <FiInfo className="text-green-500 mr-2 mt-1" />
+                    <pre className="whitespace-pre-wrap text-gray-300 font-mono">
+                      {command.text}
+                    </pre>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
 
-          <form
-            onSubmit={handleInputSubmit}
-            className="flex items-center relative"
-          >
-            <FiChevronRight className="text-green-500 mr-2" />
-            <input
-              type="text"
-              value={inputValue}
-              onChange={handleInputChange}
-              onKeyDown={handleKeyDown}
-              className="flex-1 bg-transparent border-none outline-none text-gray-300 focus:ring-0"
-              autoFocus
-              spellCheck="false"
-            />
+          {/* Input Form */}
+          <div className="relative">
+            <form onSubmit={handleInputSubmit} className="flex items-center">
+              <FiChevronRight className="text-green-500 mr-2" />
+              <input
+                type="text"
+                value={inputValue}
+                onChange={handleInputChange}
+                onKeyDown={handleKeyDown}
+                className="flex-1 bg-transparent border-none outline-none text-gray-300 focus:ring-0"
+                autoFocus
+                spellCheck="false"
+              />
+            </form>
 
-            {/* Autocomplete suggestions */}
+            {/* Suggestions */}
             {suggestions.length > 0 && (
-              <div className="absolute left-0 right-0 bottom-full mb-2 bg-black/80 border border-green-500/20 rounded-md overflow-hidden">
+              <div className="absolute left-0 right-0 bottom-full mb-2 bg-black/80 border border-green-500/20 rounded-md overflow-hidden z-10">
                 {suggestions.map((suggestion, index) => (
                   <div
                     key={suggestion}
-                    className={`px-3 py-1 ${
+                    className={`px-3 py-1 cursor-pointer ${
                       index === selectedSuggestionIndex
                         ? "bg-green-500/20 text-green-400"
-                        : "text-gray-400"
+                        : "text-gray-400 hover:bg-green-500/10"
                     }`}
                     onClick={() => {
                       setInputValue(suggestion);
@@ -494,7 +521,7 @@ const HeroSection = ({ onClose, onMinimize, onMaximize, isMaximized }) => {
                 ))}
               </div>
             )}
-          </form>
+          </div>
         </div>
       </div>
 
