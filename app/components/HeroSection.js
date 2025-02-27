@@ -26,11 +26,22 @@ const HeroSection = ({ onClose, onMinimize, onMaximize, isMaximized }) => {
     "cd about": "/about",
     "cd career": "/career",
     "cd contact": "/contact",
+    "cd projects": "/projects",
     ls: "list",
     whoami: "identity",
     neofetch: "system",
     help: "help",
     clear: "clear",
+    date: "date",
+    pwd: "pwd",
+    echo: "echo",
+    projects: "projects",
+    skills: "skills",
+    social: "social",
+    weather: "weather",
+    time: "time",
+    version: "version",
+    exit: "exit",
   };
 
   const commandResponses = {
@@ -78,17 +89,108 @@ const HeroSection = ({ onClose, onMinimize, onMaximize, isMaximized }) => {
       "  </div>",
       "</div>",
     ],
+    date: [
+      `📅 Current Date: ${new Date().toLocaleDateString()}`,
+      `⏰ Current Time: ${new Date().toLocaleTimeString()}`,
+      `📍 Timezone: ${Intl.DateTimeFormat().resolvedOptions().timeZone}`,
+    ],
+    pwd: ["📂 Current Directory:", "~/quantanyx-studio/user/visitor"],
+    echo: (args) => {
+      return args ? args : "Usage: echo [message]";
+    },
+    projects: [
+      "🚀 Featured Projects:",
+      "",
+      "1. AI Community Platform",
+      "   • Next.js, Python, Django",
+      "   • Status: Active Development",
+      "",
+      "2. AMIRLab Research Platform",
+      "   • React, Node.js, MongoDB",
+      "   • Status: Completed",
+      "",
+      "Type 'cd projects' for more details",
+    ],
+    skills: [
+      "🛠️ Technical Skills:",
+      "",
+      "Languages:",
+      "  • JavaScript/TypeScript ⭐⭐⭐⭐⭐",
+      "  • Python ⭐⭐⭐⭐",
+      "  • SQL ⭐⭐⭐⭐",
+      "",
+      "Frameworks:",
+      "  • React/Next.js ⭐⭐⭐⭐⭐",
+      "  • Django ⭐⭐⭐⭐",
+      "  • Node.js ⭐⭐⭐⭐",
+      "",
+      "Tools:",
+      "  • Git ⭐⭐⭐⭐",
+      "  • Docker ⭐⭐⭐⭐",
+      "  • AWS ⭐⭐⭐",
+    ],
+    social: [
+      "🔗 Social Links:",
+      "",
+      "• GitHub: github.com/yourusername",
+      "• LinkedIn: linkedin.com/in/yourusername",
+      "• Twitter: @yourusername",
+      "• Portfolio: yourwebsite.com",
+      "",
+      "Type 'open [platform]' to visit",
+    ],
+    weather: [
+      "🌤️ Weather information is currently unavailable",
+      "Try again later or visit weather.com",
+    ],
+    time: [
+      `🕐 Local Time: ${new Date().toLocaleTimeString()}`,
+      `📅 Date: ${new Date().toLocaleDateString()}`,
+      `🌍 Timezone: ${Intl.DateTimeFormat().resolvedOptions().timeZone}`,
+    ],
+    version: [
+      "📦 System Information:",
+      "  • Quantanyx Terminal v1.0.0",
+      "  • Next.js 14.0.0",
+      "  • React 18.2.0",
+      "  • Node.js " + process.version,
+      "",
+      "Last Updated: 2024-01-01",
+    ],
     help: [
-      "Available commands:",
-      "  cd home     - Navigate to home page",
-      "  cd about    - Navigate to about page",
-      "  cd career   - Navigate to career page",
-      "  cd contact  - Navigate to contact page",
-      "  ls         - List directory contents",
-      "  whoami     - Display current user",
-      "  neofetch   - Display system information",
-      "  clear      - Clear terminal",
-      "  help       - Display this help message",
+      "🚀 Available Commands:",
+      "",
+      "Navigation:",
+      "  cd home     - 🏠 Navigate to home page",
+      "  cd about    - ℹ️  Navigate to about page",
+      "  cd career   - 💼 Navigate to career page",
+      "  cd contact  - 📧 Navigate to contact page",
+      "",
+      "System Commands:",
+      "  ls         - 📁 List directory contents",
+      "  pwd        - 📂 Show current directory",
+      "  whoami     - 👤 Display current user",
+      "  date       - 📅 Show current date",
+      "  time       - 🕐 Show current time",
+      "  clear      - 🧹 Clear terminal",
+      "  version    - 📦 Show system version",
+      "  exit       - 🚪 Close terminal",
+      "",
+      "Information:",
+      "  projects   - 🚀 List featured projects",
+      "  skills     - 🛠️  Show technical skills",
+      "  social     - 🔗 Display social links",
+      "  neofetch   - 🖥️  Display system information",
+      "  weather    - 🌤️  Show weather info",
+      "",
+      "Utilities:",
+      "  echo       - 📢 Print a message",
+      "  help       - ❓ Display this help message",
+      "",
+      "Tips:",
+      "  • Use Tab for command completion",
+      "  • Use Up/Down arrows to navigate history",
+      "  • Commands are case-insensitive",
     ],
   };
 
@@ -174,38 +276,38 @@ const HeroSection = ({ onClose, onMinimize, onMaximize, isMaximized }) => {
     e.preventDefault();
     if (!inputValue.trim()) return;
 
+    const [command, ...args] = inputValue.trim().split(" ");
+    const fullCommand = inputValue.trim().toLowerCase();
     const newCommand = { text: inputValue, isCommand: true };
     setDisplayedCommands([...displayedCommands, newCommand]);
     setInputValue("");
     setSuggestions([]);
 
     // Process command and add response
-    const command = inputValue.toLowerCase().trim();
-    if (validCommands[command]) {
-      const responseType = validCommands[command];
+    if (validCommands[fullCommand]) {
+      // Handle full commands like "cd home", "cd about"
+      const responseType = validCommands[fullCommand];
       const response = commandResponses[responseType];
 
-      if (Array.isArray(response)) {
-        if (responseType === "list") {
-          // Format ls command output in columns
-          setDisplayedCommands((prev) => [
-            ...prev,
-            {
-              text: response.map((item) => `${item}`).join("\n"),
-              isCommand: false,
-            },
-          ]);
-        } else {
-          // Other array responses (help, etc.) already formatted
-          setDisplayedCommands((prev) => [
-            ...prev,
-            {
-              text: response.join("\n"),
-              isCommand: false,
-              isHtml: responseType === "system",
-            },
-          ]);
-        }
+      if (responseType === "echo") {
+        setDisplayedCommands((prev) => [
+          ...prev,
+          {
+            text: response(args.join(" ")),
+            isCommand: false,
+          },
+        ]);
+      } else if (responseType === "exit") {
+        onClose?.();
+      } else if (Array.isArray(response)) {
+        setDisplayedCommands((prev) => [
+          ...prev,
+          {
+            text: response.join("\n"),
+            isCommand: false,
+            isHtml: responseType === "system",
+          },
+        ]);
       } else if (responseType === "clear") {
         setDisplayedCommands([]);
       } else if (responseType.startsWith("/")) {
@@ -219,11 +321,20 @@ const HeroSection = ({ onClose, onMinimize, onMaximize, isMaximized }) => {
           },
         ]);
       }
+    } else if (command.toLowerCase() === "cd" && args.length === 0) {
+      // Handle 'cd' with no arguments
+      setDisplayedCommands((prev) => [
+        ...prev,
+        {
+          text: "Usage: cd [directory]\nAvailable directories: home, about, career, contact, projects",
+          isCommand: false,
+        },
+      ]);
     } else {
       setDisplayedCommands((prev) => [
         ...prev,
         {
-          text: `Command not found: ${inputValue}`,
+          text: `Command not found: ${inputValue}. Type 'help' for available commands.`,
           isCommand: false,
         },
       ]);
