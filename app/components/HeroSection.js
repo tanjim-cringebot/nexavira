@@ -1,13 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { FiChevronRight, FiFolder } from "react-icons/fi";
+import {
+  FiChevronRight,
+  FiFolder,
+  FiInfo,
+  FiHelpCircle,
+  FiUser,
+  FiMonitor,
+  FiTrash2,
+  FiCode,
+} from "react-icons/fi";
+import { FaGithub, FaReact, FaNpm } from "react-icons/fa";
+import { SiJavascript } from "react-icons/si";
 
-const HeroSection = () => {
+const HeroSection = ({ onClose, onMinimize, onMaximize, isMaximized }) => {
   const router = useRouter();
   const [displayedCommands, setDisplayedCommands] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(0);
+  const terminalRef = useRef(null);
 
   const validCommands = {
     "cd home": "/",
@@ -33,23 +45,33 @@ const HeroSection = () => {
     identity: "visitor@quantanyx-studio",
     system: [
       '<div class="flex gap-4">',
-      '  <div class="w-16 h-16 rounded-lg bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center">',
-      '    <span class="text-2xl">Q</span>',
+      '  <div class="w-16 h-16 rounded-lg bg-black/40 flex items-center justify-center">',
+      '    <img src="/icon.png" class="w-16 h-16"/>',
       "  </div>",
       '  <div class="flex flex-col">',
       '    <span class="text-green-400 font-bold">visitor@quantanyx</span>',
       '    <span class="text-gray-500">----------------</span>',
-      '    <div class="grid grid-cols-2 gap-x-4 text-sm mt-1">',
+      '    <div class="grid grid-cols-2 gap-x-3 text-sm mt-1">',
       '      <span class="text-green-400">OS</span>',
       '      <span class="text-gray-300">QuantanyxOS x86_64</span>',
       '      <span class="text-green-400">Host</span>',
-      '      <span class="text-gray-300">Quantum Machine v2.0</span>',
+      `      <span class="text-gray-300">${
+        typeof window !== "undefined"
+          ? window.navigator.userAgent
+              .match(/(?:Chrome|Firefox|Safari|Edge)\/[\d.]+/)?.[0]
+              .split("/")[0]
+          : "Browser"
+      }</span>`,
       '      <span class="text-green-400">Kernel</span>',
       '      <span class="text-gray-300">5.0.0-quantum</span>',
       '      <span class="text-green-400">Shell</span>',
-      '      <span class="text-gray-300">ReactJS</span>',
+      '      <span class="text-gray-300">Next.js 15</span>',
       '      <span class="text-green-400">Memory</span>',
-      '      <span class="text-gray-300">64GB / 128GB</span>',
+      `      <span class="text-gray-300">${
+        Math.round(performance?.memory?.usedJSHeapSize / 1024 / 1024) || "64"
+      }MB / ${
+        Math.round(performance?.memory?.jsHeapSizeLimit / 1024 / 1024) || "128"
+      }MB</span>`,
       '      <span class="text-green-400">Theme</span>',
       '      <span class="text-gray-300">Quantum Dark</span>',
       "    </div>",
@@ -109,6 +131,12 @@ const HeroSection = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (terminalRef.current) {
+      terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+    }
+  }, [displayedCommands]);
+
   const getSuggestions = (input) => {
     const commands = Object.keys(validCommands);
     return commands.filter((cmd) =>
@@ -142,85 +170,132 @@ const HeroSection = () => {
     setSelectedSuggestionIndex(0);
   };
 
-  const handleInputSubmit = (e) => {
+  const handleInputSubmit = async (e) => {
     e.preventDefault();
-    const command = inputValue.toLowerCase().trim();
+    if (!inputValue.trim()) return;
 
-    // Add the command to displayed commands with a tick sign
-    setDisplayedCommands((prev) => [
-      ...prev,
-      { text: inputValue, isCommand: true, isExecuted: true },
-    ]);
-
-    // Clear suggestions
+    const newCommand = { text: inputValue, isCommand: true };
+    setDisplayedCommands([...displayedCommands, newCommand]);
+    setInputValue("");
     setSuggestions([]);
 
-    // Handle clear command
-    if (command === "clear") {
-      setDisplayedCommands([]);
-      setInputValue("");
-      return;
-    }
-
-    // Check if it's a valid command
+    // Process command and add response
+    const command = inputValue.toLowerCase().trim();
     if (validCommands[command]) {
-      if (command.startsWith("cd ")) {
+      const responseType = validCommands[command];
+      const response = commandResponses[responseType];
+
+      if (Array.isArray(response)) {
+        if (responseType === "list") {
+          // Format ls command output in columns
+          setDisplayedCommands((prev) => [
+            ...prev,
+            {
+              text: response.map((item) => `${item}`).join("\n"),
+              isCommand: false,
+            },
+          ]);
+        } else {
+          // Other array responses (help, etc.) already formatted
+          setDisplayedCommands((prev) => [
+            ...prev,
+            {
+              text: response.join("\n"),
+              isCommand: false,
+              isHtml: responseType === "system",
+            },
+          ]);
+        }
+      } else if (responseType === "clear") {
+        setDisplayedCommands([]);
+      } else if (responseType.startsWith("/")) {
+        router.push(responseType);
+      } else {
         setDisplayedCommands((prev) => [
           ...prev,
           {
-            text: `Navigating to ${command.substring(3)}...`,
+            text: response,
             isCommand: false,
           },
         ]);
-        router.push(validCommands[command]);
-      } else {
-        const response = commandResponses[validCommands[command]];
-        if (Array.isArray(response)) {
-          if (command === "neofetch") {
-            setDisplayedCommands((prev) => [
-              ...prev,
-              {
-                text: response.join(""),
-                isCommand: false,
-                isHtml: true,
-              },
-            ]);
-          } else {
-            setDisplayedCommands((prev) => [
-              ...prev,
-              ...response.map((line) => ({ text: line, isCommand: false })),
-            ]);
-          }
-        } else {
-          setDisplayedCommands((prev) => [
-            ...prev,
-            { text: response, isCommand: false },
-          ]);
-        }
       }
     } else {
       setDisplayedCommands((prev) => [
         ...prev,
         {
-          text: 'Command not found. Type "help" for available commands',
+          text: `Command not found: ${inputValue}`,
           isCommand: false,
         },
       ]);
     }
+  };
 
-    setInputValue("");
+  const handleWindowControls = (action) => {
+    switch (action) {
+      case "close":
+        onClose?.();
+        break;
+      case "minimize":
+        onMinimize?.();
+        break;
+      case "maximize":
+        onMaximize?.();
+        break;
+    }
+  };
+
+  const getCommandIcon = (command) => {
+    if (command.startsWith("cd "))
+      return <FiFolder className="text-green-500 mr-2" />;
+    if (command.startsWith("git "))
+      return <FaGithub className="text-green-500 mr-2" />;
+    if (command.startsWith("npm "))
+      return <FaNpm className="text-green-500 mr-2" />;
+    if (command.includes("development server"))
+      return <FiCode className="text-green-500 mr-2" />;
+
+    switch (command.toLowerCase()) {
+      case "ls":
+        return <FiFolder className="text-green-500 mr-2" />;
+      case "whoami":
+        return <FiUser className="text-green-500 mr-2" />;
+      case "neofetch":
+        return <FiMonitor className="text-green-500 mr-2" />;
+      case "help":
+        return <FiHelpCircle className="text-green-500 mr-2" />;
+      case "clear":
+        return <FiTrash2 className="text-green-500 mr-2" />;
+      default:
+        return <FiChevronRight className="text-green-500 mr-2" />;
+    }
   };
 
   return (
-    <div className="relative w-full max-w-3xl mx-auto mt-8">
+    <div
+      className={`relative w-full ${
+        isMaximized ? "max-w-none" : "max-w-3xl"
+      } mx-auto ${isMaximized ? "m-0" : "mt-8"}`}
+    >
       {/* Terminal Window */}
-      <div className="backdrop-blur-md bg-black/30 rounded-lg border border-green-500/20 overflow-hidden">
+      <div
+        className={`backdrop-blur-md bg-black/30 rounded-lg border border-green-500/20 overflow-hidden 
+                      ${isMaximized ? "h-screen" : ""}`}
+      >
         {/* Terminal Header */}
         <div className="flex items-center px-4 py-2 bg-black/40 border-b border-green-500/10">
           <div className="flex gap-2">
-            <div className="w-3 h-3 rounded-full bg-red-500"></div>
-            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-            <div className="w-3 h-3 rounded-full bg-green-500"></div>
+            <button
+              onClick={() => handleWindowControls("close")}
+              className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 transition-colors"
+            ></button>
+            <button
+              onClick={() => handleWindowControls("minimize")}
+              className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 transition-colors"
+            ></button>
+            <button
+              onClick={() => handleWindowControls("maximize")}
+              className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 transition-colors"
+            ></button>
           </div>
           <div className="flex-1 text-center">
             <span className="text-gray-400 text-sm">terminal@quantanyx</span>
@@ -228,7 +303,12 @@ const HeroSection = () => {
         </div>
 
         {/* Terminal Content */}
-        <div className="p-4 font-mono text-sm">
+        <div
+          ref={terminalRef}
+          className={`p-4 font-mono text-sm overflow-y-auto ${
+            isMaximized ? "h-[calc(100vh-40px)]" : "h-[400px]"
+          } scrollbar-thin scrollbar-thumb-green-500/20 scrollbar-track-black/20 hover:scrollbar-thumb-green-500/40`}
+        >
           {displayedCommands.map((command, index) => (
             <div key={index} className="text-gray-300 mb-2">
               {command.isCommand ? (
@@ -236,7 +316,7 @@ const HeroSection = () => {
                   {command.isExecuted && (
                     <span className="text-green-500 mr-1">✓</span>
                   )}
-                  <FiFolder className="text-green-500 mr-2" />
+                  {getCommandIcon(command.text)}
                   <span>
                     {command.text.split(" ").map((word, i) => (
                       <span
@@ -257,7 +337,12 @@ const HeroSection = () => {
               ) : command.isHtml ? (
                 <div dangerouslySetInnerHTML={{ __html: command.text }} />
               ) : (
-                command.text
+                <div className="flex items-start">
+                  <FiInfo className="text-green-500 mr-2 mt-1" />
+                  <pre className="whitespace-pre-wrap text-gray-300 font-mono">
+                    {command.text}
+                  </pre>
+                </div>
               )}
             </div>
           ))}
@@ -266,7 +351,7 @@ const HeroSection = () => {
             onSubmit={handleInputSubmit}
             className="flex items-center relative"
           >
-            <FiFolder className="text-green-500 mr-2" />
+            <FiChevronRight className="text-green-500 mr-2" />
             <input
               type="text"
               value={inputValue}
