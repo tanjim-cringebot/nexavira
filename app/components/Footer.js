@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa";
 
 const Footer = () => {
   const [currentYear, setCurrentYear] = useState("");
@@ -14,8 +14,8 @@ const Footer = () => {
       <div className="pt-8 grid grid-cols-1 md:grid-cols-3 gap-8 container mx-auto px-4 sm:px-6 lg:px-8">
         <div>
           <h3 className="text-white text-lg font-bold mb-4">Contact Us</h3>
-          <p className="text-white text-sm">Email: info@quantanyx.studio</p>
-          <p className="text-white text-sm">Phone: +8801717171717</p>
+          <p className="text-white text-sm">Email: ask@quantanyx.info</p>
+          <p className="text-white text-sm">Phone: +8809638097126</p>
         </div>
 
         <div>
@@ -41,6 +41,14 @@ const Footer = () => {
               className="text-green-500 hover:text-green-400"
             >
               <FaLinkedin size={24} />
+            </a>
+            <a
+              href="https://www.facebook.com/quantanyx"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-green-500 hover:text-green-400"
+            >
+              <FaFacebook size={24} />
             </a>
           </div>
         </div>
