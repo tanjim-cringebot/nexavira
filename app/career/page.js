@@ -100,10 +100,10 @@ export default function Career() {
               <p className="text-gray-400 mb-6">
                 Send your resume to{" "}
                 <a
-                  href="mailto:careers@quantanyx.studio"
+                  href="mailto:careers@quantanyx.info"
                   className="text-green-500 hover:text-green-400 transition-colors duration-300"
                 >
-                  careers@quantanyx.studio
+                  careers@quantanyx.info
                 </a>{" "}
                 and we'll keep you updated on future opportunities.
               </p>
