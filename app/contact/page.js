@@ -7,6 +7,7 @@ import {
   FaGithub,
   FaEnvelope,
   FaMapMarkerAlt,
+  FaFacebook
 } from "react-icons/fa";
 import TerminalButton from "../components/TerminalButton";
 
@@ -60,19 +61,19 @@ export default function Contact() {
     {
       name: "LinkedIn",
       icon: FaLinkedin,
-      url: "https://linkedin.com/in/yourusername",
+      url: "https://linkedin.com/company/quantanyx",
       color: "hover:text-blue-400",
     },
     {
-      name: "Twitter",
-      icon: FaTwitter,
-      url: "https://twitter.com/yourusername",
+      name: "Facebook",
+      icon: FaFacebook,
+      url: "https://www.facebook.com/quantanyx",
       color: "hover:text-blue-500",
     },
     {
       name: "GitHub",
       icon: FaGithub,
-      url: "https://github.com/yourusername",
+      url: "https://github.com/quantanyx",
       color: "hover:text-purple-400",
     },
   ];
@@ -109,7 +110,7 @@ export default function Contact() {
                   <h3 className="text-green-400 font-semibold mb-1">
                     Location
                   </h3>
-                  <p className="text-gray-300">Silicon Valley, CA</p>
+                  <p className="text-gray-300">Dhaka, Bangladesh</p>
                 </div>
               </div>
 
@@ -123,7 +124,7 @@ export default function Contact() {
                     href="mailto:contact@quantanyx.com"
                     className="text-gray-300 hover:text-green-400 transition-colors"
                   >
-                    contact@quantanyx.com
+                    ask@quantanyx.com
                   </a>
                 </div>
               </div>
