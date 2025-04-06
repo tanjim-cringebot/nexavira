@@ -1,0 +1,111 @@
+#🧠💻🎤 BOKA BHAI
+Full Name: Boka Bhai (alias: "The Legendary Code Guru of Mirpur")
+Origin: Somewhere between "Bro, check this out" and "Wait, it works now?"
+
+#Profession(s):
+
+Frontend Dev (still using inline CSS because "who needs external files?")
+
+JavaScript Magician (can turn a 1-line code into a 50-line disaster)
+
+Self-Taught Designer (his design sense is 'asymmetric' for a reason)
+
+Backend Biker (his server runs like a bike with a broken muffler)
+
+
+#🚨 Backstory
+Boka Bhai first learned to code by copying and pasting from Stack Overflow at 2 AM. After learning HTML, he claimed he was a “web designer” and that he’d “conquered CSS.” When told about frameworks, he simply said, “Too many dependencies, bhai, I’ll stick with tables.” He once tried to learn Git, but his first commit was literally just: "It works now, promise."
+
+Fun Fact: His version of “debugging” involves restarting the computer three times and praying.
+
+#🛠️ Skills
+
+HTML/CSS (still wonders what Flexbox is)
+
+JavaScript (his only knowledge is how to create an infinite loop)
+
+React (he’s just waiting for it to make sense)
+
+PHP (still using echo like it’s PHP 4)
+
+GitHub (has 23 commits, 3 are “hello world”)
+
+Photoshop (still uses 1998’s version because it has all the “cool effects”)
+
+
+#💼 Startups & Projects
+🌍 MyFirstWebsite.com
+A website with a very questionable domain name, containing a single image of a cat and the text “Coming soon (but who knows when).”
+
+🎮 GamerAPI
+An API that gets your gaming stats, then crashes for no reason but says "Error 404: Player Not Found."
+
+🖼️ DesignLikePro
+A service that "automatically" generates your website layout using only Comic Sans and bright neon colors.
+
+🛠️ CodeSnack
+A snack delivery service that doesn’t deliver snacks but does send you a confusing error message after you press "Order."
+
+#🎧 Gear & Look
+
+Laptop: Crashes when it tries to open more than 2 tabs
+
+Keyboard: Missing letters but makes him "unique"
+
+Monitors: One is a 12-year-old CRT monitor
+
+VS Code Theme: Bright neon (because "dark mode gives him headaches")
+
+
+#🧃 Hobbies
+
+Spamming random code snippets in Slack
+
+Writing cryptic messages in Git commit history
+
+Watching “How to Become a Full-Stack Developer” tutorials at 3 AM
+
+Offering free advice on Stack Overflow, and then asking the same question himself
+
+Staring at his screen and pretending to debug while actually Googling the issue
+
+
+#🧢 Taglines & Quotes
+
+“Code ta kaj korena, kintu dekhte to acchi!”
+
+“React e jodi thik hoy, PHP te ki problem?”
+
+“Inline CSS ta rakha chhilo keno, bhai?”
+
+“JQuery? Arre, seta to hoye gechhe!”
+
+“404 ta jodi website e hoy, amake keno blame korbe?”
+
+
+#🎤 Boka Bhai’s Upcoming Tracks:
+
+CSS ta Jodi Box Models hoy
+
+JavaScript is Like Pizza (Everyone Loves It, But It’s Messy)
+
+Push To Prod Like It’s 1999
+
+404 Ghorer Modhye (feat. HTTP)
+
+Debugging My Life
+
+‘console.log’ Is My Therapy
+
+
+#🔗 Boka Bhai’s Portfolio
+Domain expired (no, seriously)
+GitHub: https://github.com/BokaBhai123
+LinkedIn: "Who needs LinkedIn, bhai?"
+
+#🏆 Legend Says…
+He once launched an entire website in production without testing it. It went down in 3 minutes, but hey, at least it was live for a bit!
+
+Nickname: Boka Bhai
+Title: "The Full-Stack Juggler Who Never Learned CSS Grid"
+Final Words: “Kintu ami toh design ghor-e boshe thaki.”
