@@ -59,6 +59,14 @@ export default function Navbar() {
               </Link>
               <span className="text-green-500">/</span>
               <Link
+                href="/our-team"
+                className="hover:text-green-500 transition-colors duration-300"
+              >
+                Team
+              </Link>
+
+              <span className="text-green-500">/</span>
+              <Link
                 href="/career"
                 className="hover:text-green-500 transition-colors duration-300"
               >
@@ -109,6 +117,14 @@ export default function Navbar() {
                   >
                     About
                   </Link>
+                  <span className="text-green-500">/</span>
+                  <Link
+                    href="/our-team"
+                    className="text-gray-300 hover:text-green-500 transition-colors duration-300"
+                  >
+                    Team
+                  </Link>
+
                   <span className="text-green-500">/</span>
                   <Link
                     href="/career"
@@ -166,6 +182,14 @@ export default function Navbar() {
               >
                 About
               </Link>
+
+              <Link
+                href="/our-team"
+                className="block px-3 py-2 text-gray-300 hover:text-green-500 transition-colors duration-300"
+              >
+                Team
+              </Link>
+              
               <Link
                 href="/career"
                 className="block px-3 py-2 text-gray-300 hover:text-green-500 transition-colors duration-300"
