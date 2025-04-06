@@ -154,7 +154,7 @@ export default function OurTeam() {
           return index >= maxIndex ? 0 : index + 1;
         })
       );
-    }, 5000);
+    }, 15000);
 
     return () => clearInterval(timer);
   }, [teamMembers]);
