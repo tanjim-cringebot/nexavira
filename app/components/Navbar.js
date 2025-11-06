@@ -31,19 +31,19 @@ export default function Navbar() {
           isScrolled ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-1 sm:pt-2">
           {/* Logo */}
-          <div className="flex justify-center pt-8">
+          <div className="flex justify-center pt-4 sm:pt-8">
             <img
-              src="/logo.png"
+              src="/Nexavira.png"
               alt="logo"
-              className="w-[250px] sm:w-[300px] md:w-[400px] h-auto"
+              className="w-[180px] xs:w-[220px] sm:w-[560px] md:w-[500px] h-auto"
             />
           </div>
 
           {/* Navigation Links */}
-          <div className="flex justify-center mt-8">
-            <div className="flex items-center space-x-2 text-sm sm:text-base text-gray-300">
+          <div className="flex justify-center mt-1 sm:mt-2">
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-[13px] sm:text-base text-gray-300">
               <Link
                 href="/"
                 className="hover:text-green-500 transition-colors duration-300"
@@ -101,7 +101,7 @@ export default function Navbar() {
               {/* Desktop Navigation */}
               <div className="hidden sm:flex sm:justify-between sm:w-full">
                 <div className="">
-                  <img src="/logo.png" alt="logo" className="h-8 w-auto" />
+                  <img src="/Nexavira.png" alt="logo" className="h-8 w-auto" />
                 </div>
                 <div className="flex items-center space-x-2">
                   <Link
@@ -147,6 +147,9 @@ export default function Navbar() {
                 <button
                   type="button"
                   className="text-gray-300 hover:text-green-500 focus:outline-none"
+                  aria-controls="mobile-menu"
+                  aria-expanded={mobileMenuOpen}
+                  aria-label="Toggle navigation menu"
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 >
                   <svg
@@ -168,8 +171,8 @@ export default function Navbar() {
           </div>
 
           {/* Mobile menu */}
-          <div className={`sm:hidden ${mobileMenuOpen ? "block" : "hidden"}`}>
-            <div className="px-2 pt-2 pb-3 space-y-1">
+          <div id="mobile-menu" className={`sm:hidden ${mobileMenuOpen ? "block" : "hidden"}`}>
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-black/70 backdrop-blur-sm">
               <Link
                 href="/"
                 className="block px-3 py-2 text-gray-300 hover:text-green-500 transition-colors duration-300"
@@ -206,6 +209,8 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
+      {/* Spacer to prevent content from sliding under the fixed navbar */}
+      <div aria-hidden="true" className="h-28" />
     </>
   );
 }

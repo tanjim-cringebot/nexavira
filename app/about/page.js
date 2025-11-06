@@ -42,7 +42,7 @@ export default function About() {
         {/* Header Section */}
         <div className="text-center mb-16">
           <h1 className="text-white text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 relative inline-block">
-            About Quantanyx
+            About Nexavira
             <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-1/2 h-0.5 bg-gradient-to-r from-transparent via-green-500 to-transparent"></div>
           </h1>
           <p className="text-gray-400 text-sm sm:text-base max-w-2xl mx-auto">

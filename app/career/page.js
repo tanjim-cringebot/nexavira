@@ -100,10 +100,10 @@ export default function Career() {
               <p className="text-gray-400 mb-6">
                 Send your resume to{" "}
                 <a
-                  href="mailto:careers@quantanyx.info"
+                  href="mailto:careers@nexavira.info"
                   className="text-green-500 hover:text-green-400 transition-colors duration-300"
                 >
-                  careers@quantanyx.info
+                  careers@nexavira.info
                 </a>{" "}
                 and we'll keep you updated on future opportunities.
               </p>
@@ -123,7 +123,7 @@ export default function Career() {
           {/* Why Join Us Section */}
           <div className="mt-16 text-center">
             <h2 className="text-white text-2xl font-bold mb-8 relative inline-block">
-              Why Join Quantanyx?
+              Why Join Nexavira?
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-1/2 h-0.5 bg-gradient-to-r from-transparent via-green-500 to-transparent"></div>
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

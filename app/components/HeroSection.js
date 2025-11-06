@@ -55,18 +55,18 @@ const HeroSection = ({ onClose, onMinimize, onMaximize, isMaximized }) => {
       "career.json",
       "contact.sh",
     ],
-    identity: "visitor@quantanyx-studio",
+    identity: "visitor@nexavira-studio",
     system: [
       '<div class="flex gap-4">',
       '  <div class="w-16 h-16 rounded-lg bg-black/40 flex items-center justify-center">',
       '    <img src="/icon.png" class="w-16 h-16"/>',
       "  </div>",
       '  <div class="flex flex-col">',
-      '    <span class="text-green-400 font-bold">visitor@quantanyx</span>',
+      '    <span class="text-green-400 font-bold">visitor@Nexavira</span>',
       '    <span class="text-gray-500">----------------</span>',
       '    <div class="grid grid-cols-2 gap-x-3 text-sm mt-1">',
       '      <span class="text-green-400">OS</span>',
-      '      <span class="text-gray-300">QuantanyxOS x86_64</span>',
+      '      <span class="text-gray-300">NexaviraOS x86_64</span>',
       '      <span class="text-green-400">Host</span>',
       `      <span class="text-gray-300">${
         typeof window !== "undefined"
@@ -96,7 +96,7 @@ const HeroSection = ({ onClose, onMinimize, onMaximize, isMaximized }) => {
       `⏰ Current Time: ${new Date().toLocaleTimeString()}`,
       `📍 Timezone: ${Intl.DateTimeFormat().resolvedOptions().timeZone}`,
     ],
-    pwd: ["📂 Current Directory:", "~/quantanyx-studio/user/visitor"],
+    pwd: ["📂 Current Directory:", "~/nexavira-studio/user/visitor"],
     echo: (args) => {
       return args ? args : "Usage: echo [message]";
     },
@@ -152,7 +152,7 @@ const HeroSection = ({ onClose, onMinimize, onMaximize, isMaximized }) => {
     ],
     version: [
       "📦 System Information:",
-      "  • Quantanyx Terminal v1.0.0",
+      "  • Nexavira Terminal v1.0.0",
       "  • Next.js 14.0.0",
       "  • React 18.2.0",
       "  • Node.js " + process.version,
@@ -197,7 +197,7 @@ const HeroSection = ({ onClose, onMinimize, onMaximize, isMaximized }) => {
   };
 
   const initialMessages = [
-    { text: "cd quantanyx-studio", delay: 1000, isCommand: true },
+    { text: "cd Nexavira-studio", delay: 1000, isCommand: true },
     {
       text: "git checkout -b feature/innovation",
       delay: 2000,
@@ -433,7 +433,7 @@ const HeroSection = ({ onClose, onMinimize, onMaximize, isMaximized }) => {
             ></button>
           </div>
           <div className="flex-1 text-center">
-            <span className="text-gray-400 text-sm">terminal@quantanyx</span>
+            <span className="text-gray-400 text-sm">terminal@nexavira</span>
           </div>
         </div>
 

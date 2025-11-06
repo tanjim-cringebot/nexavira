@@ -61,19 +61,19 @@ export default function Contact() {
     {
       name: "LinkedIn",
       icon: FaLinkedin,
-      url: "https://linkedin.com/company/quantanyx",
+      url: "https://linkedin.com/company/nexavira",
       color: "hover:text-blue-400",
     },
     {
       name: "Facebook",
       icon: FaFacebook,
-      url: "https://www.facebook.com/quantanyx",
+      url: "https://www.facebook.com/nexavira",
       color: "hover:text-blue-500",
     },
     {
       name: "GitHub",
       icon: FaGithub,
-      url: "https://github.com/quantanyx",
+      url: "https://github.com/nexavira",
       color: "hover:text-purple-400",
     },
   ];
@@ -121,10 +121,10 @@ export default function Contact() {
                 <div>
                   <h3 className="text-green-400 font-semibold mb-1">Email</h3>
                   <a
-                    href="mailto:contact@quantanyx.com"
+                    href="mailto:contact@nexavira.com"
                     className="text-gray-300 hover:text-green-400 transition-colors"
                   >
-                    ask@quantanyx.com
+                    ask@nexavira.com
                   </a>
                 </div>
               </div>

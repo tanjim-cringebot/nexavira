@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import styles from './page.module.css';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function OurTeam() {
   const teamMembers = [
@@ -223,7 +224,7 @@ export default function OurTeam() {
               onClick={() => handleSlideClick(index, 'prev')}
               className="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
             >
-              ← Previous
+              <ChevronLeft className='w-10 h-10'/>
             </button>
             <span className="text-gray-400">
               {currentSection?.title} ({sectionIndex + 1} / {member.sections.length})
@@ -232,7 +233,7 @@ export default function OurTeam() {
               onClick={() => handleSlideClick(index, 'next')}
               className="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
             >
-              Next →
+              <ChevronRight className='w-10 h-10'/>
             </button>
           </div>
         </div>
@@ -240,7 +241,7 @@ export default function OurTeam() {
     );
 
     return (
-      <div className={`flex flex-col lg:flex-row items-start gap-16 pt-80 lg:gap-24 ${
+      <div className={`flex flex-col lg:flex-row items-start gap-16 sm:pt-80 pt-48 lg:gap-24 ${
         index === 0 ? 'pt-32 pb-16' : 'py-16'
       } ${
         index !== teamMembers.length - 1 ? 'border-b border-white/5' : ''

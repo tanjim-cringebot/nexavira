@@ -68,7 +68,7 @@ export default function Home() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-48 sm:pt-60">
         {/* Welcome message with responsive text */}
         <div className="text-white text-xl sm:text-2xl mt-6 sm:mt-8 font-bold text-center sm:text-left">
-          Welcome to Quantanyx Studio
+          Welcome to Nexavira
         </div>
 
         {/* Description with responsive text */}

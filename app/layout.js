@@ -9,13 +9,13 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata = {
-  title: "Quantanyx",
+  title: "Nexavira",
   description: "Code forged in chaos. Building the future of technology",
   icons: {
     icon: [
       {
-        url: "/QT.png",
-        href: "/QT.png",
+        url: "/NV.png",
+        href: "/NV.png",
       },
     ],
   },
@@ -25,12 +25,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <title>Quantanyx</title>
+        <title>Nexavira</title>
         <meta
           name="description"
           content="Code forged in chaos. Building the future of technology"
         />
-        <link rel="icon" href="/QT.png" />
+        <link rel="icon" href="/NV.png" />
         <link rel="apple-touch-icon" href="/QT.png" />
       </head>
       <body className={`${jetBrainsMono.className} antialiased bg-[#0F111A]`}>
