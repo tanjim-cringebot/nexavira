@@ -55,7 +55,7 @@ export default function About() {
           <div className="backdrop-blur-sm bg-black/20 border border-green-500/10 rounded-xl p-8 text-center">
             <h2 className="text-white text-2xl font-bold mb-6">Our Mission</h2>
             <p className="text-gray-300 text-lg leading-relaxed">
-              At Quantanyx, we're dedicated to transforming innovative ideas
+              At Nexavira, we're dedicated to transforming innovative ideas
               into powerful digital solutions. Our mission is to empower
               businesses through cutting-edge technology while maintaining the
               highest standards of quality and reliability.
