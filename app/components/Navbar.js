@@ -95,7 +95,7 @@ export default function Navbar() {
             <div className="flex items-center justify-between h-16">
               {/* Logo for mobile */}
               <div className="flex-shrink-0 sm:hidden">
-                <img src="/logo.png" alt="logo" className="h-8 w-auto" />
+                <img src="/NV.png" alt="logo" className="h-8 w-auto" />
               </div>
 
               {/* Desktop Navigation */}
